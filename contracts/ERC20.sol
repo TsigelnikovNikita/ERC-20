@@ -83,8 +83,7 @@ contract ERC20 {
 
     function burn(address account, uint256 amount) public virtual onlyOwner {
         require(account != address(0x0), "ERC20: address can't be equal to zero");
-        // Need to check on the overflow
         _totalSupply -= amount;
-        _balances[account] -= amount;
+        _balances[account] -= amount;            
     }
 }
