@@ -4,6 +4,7 @@ require("hardhat-gas-reporter");
 require("solidity-coverage");
 require("hardhat-storage-layout");
 
+require("dotenv").config();
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
@@ -15,7 +16,7 @@ module.exports = {
     version: (process.env.COMPILE_VERSION) ? process.env.COMPILE_VERSION : "0.8.4",
     settings: {
       optimizer: {
-        enabled: (process.env.OPTIMIZER === "true") ? true : false,
+        enabled: (process.env.OPTIMIZER == "true") ? true : false,
         runs: (process.env.OPTIMIZER_RUNS) ? process.env.OPTIMIZER_RUNS : 200,
       },
       outputSelection: {
@@ -26,7 +27,7 @@ module.exports = {
     },
   },
   gasReporter: {
-    enabled: (process.env.REPORT_GAS === "true") ? true : false
+    enabled: (process.env.REPORT_GAS == "true") ? true : false
   },
   networks: {
     rinkeby: {
