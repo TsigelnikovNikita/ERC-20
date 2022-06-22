@@ -7,6 +7,8 @@ contract ERC20 {
     mapping (address => uint256) _balances;
     mapping (address => mapping(address => uint256)) allowances;
 
+    address immutable public owner;
+
     string private _name;
     string private _symbol;
     uint256 private _totalSupply;
@@ -14,9 +16,15 @@ contract ERC20 {
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 
+    modifier onlyOwner {
+        require(msg.sender == owner, "ERC20: only owner can call this function");
+        _;
+    }
+
     constructor(string memory name_, string memory symbol_) {
         _name = name_;
         _symbol = symbol_;
+        owner = msg.sender;
     }
 
     function name() public view virtual returns (string memory) {
@@ -43,7 +51,8 @@ contract ERC20 {
         return _balances[_owner];
     }
 
-    function transfer(address _to, uint256 _value) public view virtual returns (bool success) {
+    function transfer(address _to, uint256 _value) public virtual returns (bool success) {
+        _transfer(msg.sender, _to, _value);
         return true;
     }
 
@@ -53,5 +62,29 @@ contract ERC20 {
 
     function approve(address _spender, uint256 _value) public virtual returns (bool success) {
         return true;
+    }
+
+    function _transfer(address _from, address _to, uint256 _value) internal virtual {
+        require(_from != address(0x0), "ERC20: from address can't be equal to zero");
+        require(_to != address(0x0), "ERC20: to address can't be equal to zero");
+
+        // Need to check on the overflow
+        _balances[_from] -= _value;
+        _balances[_to] += _value;
+
+        emit Transfer(_from, _to, _value);
+    }
+
+    function mint(address account, uint256 amount) public virtual onlyOwner {
+        require(account != address(0x0), "ERC20: address can't be equal to zero");
+        _totalSupply += amount;
+        _balances[account] += amount;
+    }
+
+    function burn(address account, uint256 amount) public virtual onlyOwner {
+        require(account != address(0x0), "ERC20: address can't be equal to zero");
+        // Need to check on the overflow
+        _totalSupply -= amount;
+        _balances[account] -= amount;
     }
 }
