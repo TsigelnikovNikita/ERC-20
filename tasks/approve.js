@@ -9,7 +9,7 @@ task("approve", "Allows spender to withdraw from your account multiple times, up
 
         await contract.approve(taskArgs.spender, taskArgs.value)
             .then(async () => {
-                console.log(`Approve was successfully done`);
+                console.log("Approve was successfully done");
             }, (error) => {
                 console.log(error.message);
             });

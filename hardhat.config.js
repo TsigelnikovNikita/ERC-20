@@ -9,6 +9,7 @@ require("dotenv").config();
 // Go to https://hardhat.org/config/ to learn more
 
 require("./tasks/approve");
+require("./tasks/burn");
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
