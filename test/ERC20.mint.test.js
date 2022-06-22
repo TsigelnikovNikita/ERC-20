@@ -42,6 +42,7 @@ describe("ERC20.mint", function () {
     expect(await erc20.totalSupply()).to.eq(0);
 
     await erc20.mint(user.address, 100);
+
     expect(await erc20.totalSupply()).to.eq(100);
   });
 });

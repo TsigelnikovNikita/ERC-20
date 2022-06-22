@@ -27,7 +27,7 @@ describe("ERC20.transfer", function () {
       })
   });
 
-  it("should throw an exception if value is less that address balance", async function () {
+  it("should throw an exception if value is less then address balance", async function () {
     await expect(erc20.transfer(user.address, 2000))
       .to.be.rejectedWith(Error)
       .then((error) => {

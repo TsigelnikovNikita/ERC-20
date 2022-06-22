@@ -8,7 +8,7 @@ describe("ERC20.basic", function () {
   let erc20Owner;
   let user;
 
-  it("should deploy with correct values", async function () {
+  it("should be deployed with correct values", async function () {
     [erc20Owner, user] = await ethers.getSigners();
     const erc20Factory = await ethers.getContractFactory("ERC20", erc20Owner);
     const erc20 = await erc20Factory.deploy("TestName", "TestSymbol");
