@@ -12,6 +12,7 @@ require("./tasks/approve");
 require("./tasks/burn");
 require("./tasks/mint");
 require("./tasks/transfer");
+require("./tasks/transferFrom");
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
