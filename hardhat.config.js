@@ -10,6 +10,7 @@ require("dotenv").config();
 
 require("./tasks/approve");
 require("./tasks/burn");
+require("./tasks/mint");
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
