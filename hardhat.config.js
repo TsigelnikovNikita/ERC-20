@@ -8,6 +8,8 @@ require("dotenv").config();
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
+require("./tasks/approve");
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
