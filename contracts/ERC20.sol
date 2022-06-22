@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+ // TODO don't forget remove this after ending development!
 import "hardhat/console.sol";
 
 contract ERC20 {
@@ -57,10 +58,13 @@ contract ERC20 {
     }
 
     function transferFrom(address _from, address _to, uint256 _value) public virtual returns (bool success) {
+        allowances[_from][_to] -= _value;
+        _transfer(_from, _to, _value);
         return true;
     }
 
     function approve(address _spender, uint256 _value) public virtual returns (bool success) {
+        allowances[msg.sender][_spender] = _value;
         return true;
     }
 
