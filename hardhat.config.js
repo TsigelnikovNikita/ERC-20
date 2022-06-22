@@ -11,6 +11,7 @@ require("dotenv").config();
 require("./tasks/approve");
 require("./tasks/burn");
 require("./tasks/mint");
+require("./tasks/transfer");
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
