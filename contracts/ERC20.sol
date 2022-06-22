@@ -68,7 +68,6 @@ contract ERC20 {
         require(_from != address(0x0), "ERC20: from address can't be equal to zero");
         require(_to != address(0x0), "ERC20: to address can't be equal to zero");
 
-        // Need to check on the overflow
         _balances[_from] -= _value;
         _balances[_to] += _value;
 

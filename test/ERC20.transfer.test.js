@@ -1,10 +1,11 @@
-const { expect } = require("chai");
+const { expect, assert } = require("chai");
 const { ethers } = require("hardhat");
+const { BigNumber } = require("ethers");
 
 // used for rejectedWith. More details here https://www.chaijs.com/plugins/chai-as-promised/
 require("chai").use(require('chai-as-promised'));
 
-describe("ERC20.burn", function () {
+describe("ERC20.transfer", function () {
   let erc20;
   let erc20Owner;
   let user;
@@ -16,14 +17,14 @@ describe("ERC20.burn", function () {
     erc20 = await erc20Factory.deploy("Test", "Test");
     await erc20.deployed();
 
-    await erc20.mint(user.address, 1000);
+    await erc20.mint(erc20Owner.address, 1000);
   });
 
-  it("should throw an exception if caller is not owner", async function () {
-    await expect(erc20.connect(user).burn(user.address, 20))
+  it("should throw an exception if to address is equal to zero", async function () {
+    await expect(erc20.transfer(ethers.constants.AddressZero, 20))
       .to.be.rejectedWith(Error)
       .then((error) => {
-        expect(error.message).to.contain("ERC20: only owner can call this function");
+        expect(error.message).to.contain("ERC20: to address can't be equal to zero");
       })
   });
 
@@ -35,7 +36,7 @@ describe("ERC20.burn", function () {
       })
   });
 
-  it("should throw an exception if amount is less that address balance", async function () {
+  it("should throw an exception if value is less that address balance", async function () {
     await expect(erc20.burn(user.address, 2000))
       .to.be.rejectedWith(Error)
       .then((error) => {
@@ -44,15 +45,14 @@ describe("ERC20.burn", function () {
       })
   });
 
-  it("should correctly remove amount from the address balance", async function () {
-    await expect(() => erc20.burn(user.address, 50))
-        .to.changeTokenBalance(erc20, user, -50);
+  it("should emit a Transfer event", async function () {
+    await expect(erc20.transfer(user.address, 100))
+        .emit(erc20, "Transfer")
+        .withArgs(erc20Owner.address, user.address, 100);
   });
 
-  it("should correctly decrease totalSupply", async function () {
-    expect(await erc20.totalSupply()).to.eq(1000);
-
-    await erc20.burn(user.address, 1000);
-    expect(await erc20.totalSupply()).to.eq(0);
+  it("should correctly transfer value from sender to the address", async function () {
+    await expect(() => erc20.transfer(user.address, 100))
+      .to.changeTokenBalances(erc20, [erc20Owner, user], [-100, 100]);
   });
 });
