@@ -10,6 +10,6 @@ task("balanceOf", "Allows to get an address balance with address `owner`")
             .then(async (result) => {
                 console.log(`Account balance: ${result}`);
             }, (error) => {
-                console.log(error.message);
+                console.log(error.reason);
             });
     });

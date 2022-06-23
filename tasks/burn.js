@@ -11,6 +11,6 @@ task("burn", "Allows to burn `amount` of tokens from `account`, reducing the tot
             .then(async () => {
                 console.log("Tokens was successfully burned");
             }, (error) => {
-                console.log(error.message);
+                console.log(error.reason);
             });
     });

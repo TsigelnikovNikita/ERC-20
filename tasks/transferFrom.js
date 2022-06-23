@@ -12,6 +12,6 @@ task("transferFrom", "Allows to transfer tokens from address `from` to address `
             .then(async () => {
                 console.log("Tokens was successfully transfered");
             }, (error) => {
-                console.log(error.message);
+                console.log(error.reason);
             });
     });

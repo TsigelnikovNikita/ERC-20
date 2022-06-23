@@ -11,6 +11,6 @@ task("mint", "Allows to mint `amount` of tokens and assigns them to `account`, i
             .then(async () => {
                 console.log("Tokens was successfully minted");
             }, (error) => {
-                console.log(error.message);
+                console.log(error.reason);
             });
     });

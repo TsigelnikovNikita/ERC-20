@@ -11,6 +11,6 @@ task("approve", "Allows `spender` to withdraw from your account multiple times, 
             .then(async () => {
                 console.log("Approve was successfully done");
             }, (error) => {
-                console.log(error.message);
+                console.log(error.reason);
             });
     });

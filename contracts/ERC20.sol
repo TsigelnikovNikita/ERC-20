@@ -1,9 +1,6 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
- // TODO don't forget remove this after ending development!
-import "hardhat/console.sol";
-
 contract ERC20 {
     mapping (address => uint256) _balances;
     mapping (address => mapping(address => uint256)) allowances;

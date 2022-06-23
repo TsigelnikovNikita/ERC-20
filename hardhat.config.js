@@ -37,6 +37,7 @@ module.exports = {
   gasReporter: {
     enabled: (process.env.REPORT_GAS == "true") ? true : false
   },
+  defaultNetwork: (process.env.DEFAULT_NETWORK) ? process.env.DEFAULT_NETWORK : "hardhat",
   networks: {
     rinkeby: {
       url: `${process.env.RINKEBY_NETWORK_URI}`,

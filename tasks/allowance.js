@@ -11,6 +11,6 @@ task("allowance", "Allows to get amount which `spender` is still allowed to with
             .then(async (result) => {
                 console.log(`Allowance for ${taskArgs.spender} from ${taskArgs.owner}: ${result}`);
             }, (error) => {
-                console.log(error.message);
+                console.log(error.reason);
             });
     });
