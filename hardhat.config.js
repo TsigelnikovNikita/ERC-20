@@ -3,6 +3,7 @@ require("hardhat-dependency-compiler");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
 require("hardhat-storage-layout");
+require("@nomiclabs/hardhat-etherscan");
 
 require("dotenv").config();
 // You need to export an object to set up your config
@@ -40,14 +41,22 @@ module.exports = {
   defaultNetwork: (process.env.DEFAULT_NETWORK) ? process.env.DEFAULT_NETWORK : "hardhat",
   networks: {
     rinkeby: {
-      url: `${process.env.RINKEBY_NETWORK_URI}`,
-      accounts: [`${process.env.SIGNER_PRIVATE_KEY}`]
+      url: process.env.RINKEBY_NETWORK_URI,
+      accounts: [process.env.SIGNER_PRIVATE_KEY]
     },
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY
   }
 };
 
 // for case when user didn't define SIGNER_PRIVATE_KEY and RINKEBY_NETWORK_URI variables  
 if (process.env.SIGNER_PRIVATE_KEY == undefined ||
     process.env.RINKEBY_NETWORK_URI == undefined) {
-  delete module.exports.networks.rinkeby
+  delete module.exports.networks.rinkeby;
+}
+
+// for case when user didn't define ETHERSCAN_API_KEY  
+if (process.env.ETHERSCAN_API_KEY == undefined) {
+  delete module.exports.etherscan;
 }
