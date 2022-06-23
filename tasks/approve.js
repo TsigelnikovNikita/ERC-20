@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-task("approve", "Allows spender to withdraw from your account multiple times, up to the value amount")
+task("approve", "Allows `spender` to withdraw from your account multiple times, up to the `value` amount")
     .addParam("spender", "Address to which you approve to withdraw your tokens")
     .addParam("value", "Amount of tokens that spender can withdraw")
     .setAction(async (taskArgs) => {

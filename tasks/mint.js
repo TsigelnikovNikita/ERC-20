@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-task("mint", "Allows to mint tokens and assigns them to account, increasing the total supply")
+task("mint", "Allows to mint `amount` of tokens and assigns them to `account`, increasing the total supply")
     .addParam("account", "Address for which tokens will be minted")
     .addParam("amount", "Amount of tokens that will be minted")
     .setAction(async (taskArgs) => {

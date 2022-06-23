@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-task("burn", "Allows to burn tokens from account, reducing the total supply")
+task("burn", "Allows to burn `amount` of tokens from `account`, reducing the total supply")
     .addParam("account", "Address from which tokens will be burned")
     .addParam("amount", "Amount of tokens that will be burned")
     .setAction(async (taskArgs) => {
