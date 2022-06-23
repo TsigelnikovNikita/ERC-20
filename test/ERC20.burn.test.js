@@ -35,7 +35,7 @@ describe("ERC20.burn", function () {
       })
   });
 
-  it("should throw an exception if amount is less then address balance", async function () {
+  it("should throw an exception if amount is less than address balance", async function () {
     await expect(erc20.burn(user.address, 2000))
       .to.be.rejectedWith(Error)
       .then((error) => {

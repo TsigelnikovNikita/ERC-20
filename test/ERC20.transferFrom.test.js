@@ -30,7 +30,7 @@ describe("ERC20.transferFrom", function () {
       })
   });
 
-  it("should throw an exception if value is less then allowance", async function () {
+  it("should throw an exception if value is less than allowance", async function () {
     await expect(erc20.transferFrom(erc20Owner.address, user.address, 1000))
       .to.be.rejectedWith(Error)
       .then((error) => {
