@@ -22,4 +22,10 @@ describe("ERC20.approve", function () {
 
     expect(await erc20.allowance(erc20Owner.address, user.address)).to.eq(1000);
   });
+
+  it("should emit an Approval event", async function () {
+    await expect(erc20.approve(user.address, 1000))
+        .emit(erc20, "Approval")
+        .withArgs(erc20Owner.address, user.address, 1000);
+  });
 });

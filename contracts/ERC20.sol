@@ -102,9 +102,13 @@ contract ERC20 {
     /**
      * @dev Allows `_spender` to withdraw from your account multiple times, up to the `_value` amount.
      * If this function is called again it overwrites the current allowance with `_value`.
+     *
+     * Emit an {Approval} event.
      */
     function approve(address _spender, uint256 _value) public virtual returns (bool success) {
         allowances[msg.sender][_spender] = _value;
+
+        emit Approval(msg.sender, _spender, _value);
         return true;
     }
 
