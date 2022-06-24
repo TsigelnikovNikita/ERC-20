@@ -1,4 +1,4 @@
 module.exports = [
-    "Name",
-    "Symbol"
+    "CryptonStudio",
+    "CRS"
   ];
