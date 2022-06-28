@@ -124,19 +124,29 @@ contract ERC20 {
 
     /**
      * @dev Creates `_amount` tokens and assigns them to `_account`, increasing the total supply.
+     *
+     * Emit an {Transfer} event.
      */
     function mint(address _account, uint256 _amount) public virtual onlyOwner {
         require(_account != address(0x0), "ERC20: address can't be equal to zero");
+
         _totalSupply += _amount;
         _balances[_account] += _amount;
+
+        emit Transfer(address(0x0), _account, _amount);
     }
 
     /**
      * @dev Destroys `_amount` tokens from `_account`, reducing the total supply.
+     *
+     * Emit an {Transfer} event.
      */
     function burn(address _account, uint256 _amount) public virtual onlyOwner {
         require(_account != address(0x0), "ERC20: address can't be equal to zero");
+
         _totalSupply -= _amount;
-        _balances[_account] -= _amount;            
+        _balances[_account] -= _amount;
+
+        emit Transfer(_account, address(0x0), _amount);
     }
 }

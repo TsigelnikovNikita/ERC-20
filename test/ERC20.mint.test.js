@@ -45,4 +45,12 @@ describe("ERC20.mint", function () {
 
     expect(await erc20.totalSupply()).to.eq(100);
   });
+
+  it("should emit Transfer event", async function () {
+    const tx = await erc20.mint(user.address, 1000);
+
+    await expect(tx)
+      .emit(erc20, "Transfer")
+      .withArgs(ethers.constants.AddressZero, user.address, 1000);
+  });
 });

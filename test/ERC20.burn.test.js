@@ -56,4 +56,12 @@ describe("ERC20.burn", function () {
 
     expect(await erc20.totalSupply()).to.eq(0);
   });
+
+  it("should emit Transfer event", async function () {
+    const tx = await erc20.burn(user.address, 1000);
+
+    await expect(tx)
+      .emit(erc20, "Transfer")
+      .withArgs(user.address, ethers.constants.AddressZero, 1000);
+  });
 });
