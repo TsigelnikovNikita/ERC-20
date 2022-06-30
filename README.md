@@ -1,7 +1,7 @@
 # Implementation of ERC-20 standard token 
 
 This smart-contract is deployed and verified on the rinkeby network
-[here](https://rinkeby.etherscan.io/address/0x4bf9c7528a056ee452456b5f01f2b5e38661c6ee)
+[here](https://rinkeby.etherscan.io/address/0x9c3a7b3980f51d6b871335e61d8e6e292921de44)
 
 You may check test coverage using:<br>
 ```hardhat coverage```
