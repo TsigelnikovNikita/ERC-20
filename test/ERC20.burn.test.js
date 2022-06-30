@@ -39,8 +39,7 @@ describe("ERC20.burn", function () {
     await expect(erc20.burn(user.address, 2000))
       .to.be.rejectedWith(Error)
       .then((error) => {
-        expect(error.message).to.contain(
-            "VM Exception while processing transaction: reverted with panic code 0x11");
+        expect(error.message).to.contain("ERC20: insufficient balance");
       })
   });
 
